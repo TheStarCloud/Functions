@@ -1,0 +1,12 @@
+#authored by iler.a
+def make_a_bar(df, cat_column):
+    cat_column_count = df[cat_column].value_counts()
+    cat_column_count_df = pd.DataFrame(cat_column_count).reset_index()
+    cat_column_count_df = cat_column_count_df.rename(columns={"index": "categories"})
+    plt.bar(cat_column_count_df.index, cat_column_count_df[cat_column])
+    ax = plt.subplot()
+    ax.set_xticks(range(len(cat_column_count_df)))
+    ax.set_xticklabels(cat_column_count_df.categories, rotation = 90)
+    plt.xlabel(str(cat_column).replace('_',' '))
+    plt.ylabel("Counts")
+    plt.show()
